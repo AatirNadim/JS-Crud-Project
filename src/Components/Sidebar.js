@@ -1,8 +1,14 @@
+import { Box } from '@mui/system'
 import React from 'react'
+import ListItem from './ListItem'
 
 const Sidebar = () => {
   return (
-    <div>Sidebar</div>
+    <Box>
+        <ListItem name = 'Add Student'/>
+        <ListItem name = 'Manage Students'/>
+        <ListItem name = 'Logout'/>
+    </Box>
   )
 }
 

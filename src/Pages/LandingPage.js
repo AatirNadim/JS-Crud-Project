@@ -1,6 +1,8 @@
 import { Container, Grid } from '@mui/material'
 import { Box } from '@mui/system'
 import React from 'react'
+import { Typography } from '@mui/material'
+
 import { useRecoilState } from 'recoil'
 import AddStudent from '../Components/AddStudent'
 import ManageStudent from '../Components/ManageStudent'
@@ -9,6 +11,7 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 
 import { loginState } from '../StateAtoms/loginAtom'
 import Sidebar from '../Components/Sidebar'
+import { TypeSpecimenOutlined } from '@mui/icons-material'
 
 const LandingPage = () => {
   const [login, setLogin] = useRecoilState(loginState)
@@ -28,12 +31,19 @@ const LandingPage = () => {
         justifyContent={"space-between"}
         alignItems="center"
       >
-        <AddStudent />
+        <Typography
+        sx = {{
+          padding: "1rem 1.5rem",
+          marginLeft: "2.4rem",
+        }}
+        >
+          LOGO  
+        </Typography>
         <Box
           sx={{
             border: "1px solid black",
             padding: "1rem 1.5rem",
-            marginLeft: "2.4rem",
+            marginRight: "2.4rem",
           }}
         >
           {login.loggedIn ?
@@ -51,7 +61,7 @@ const LandingPage = () => {
 
             : <div>hello guest</div>}
         </Box>
-      </Grid>
+      </Grid> 
       <Grid
         container
         direction="row"

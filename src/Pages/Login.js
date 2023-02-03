@@ -68,9 +68,9 @@ export const Login = () => {
     event.preventDefault();
   };
 
-  useEffect(() => {
-    console.log(login);
-  }, [login])
+  // useEffect(() => {
+  //   console.log(login);
+  // }, [login])
   return (
     <div>
       <Box
