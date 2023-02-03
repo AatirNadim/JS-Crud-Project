@@ -42,7 +42,7 @@ export const Login = () => {
     //         console.log(error);
     //         // ..
     //     });
-    setLogin({email : email, password : password})
+    setLogin({email : email, password : password, loggedIn : true})
 
   }
   const handleSignIn = (e) => {
@@ -104,7 +104,7 @@ export const Login = () => {
           }}
           onChange={(e) => {
             setEmail(e.target.value)
-            console.log(email);
+            // console.log(email);
           }}
         />
         {/* <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
@@ -127,9 +127,9 @@ export const Login = () => {
             // sx = {{backgroundColor: 'red'}}
             onChange={(e) => {
               setPassword(e.target.value)
-              setTimeout(() => {
-                console.log(password)
-              }, 1000)
+              // setTimeout(() => {
+              //   console.log(password)
+              // }, 1000)
             }}
             endAdornment={
               <InputAdornment position="end">
