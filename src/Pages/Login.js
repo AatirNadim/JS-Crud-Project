@@ -85,6 +85,8 @@ export const Login = () => {
           padding: '1rem',
           borderRadius: '1rem',
           backgroundColor: 'fffcfb',
+          maxWidth: '100vw',
+          boxSizing: 'border-box',
         }}
         noValidate
         autoComplete="off"

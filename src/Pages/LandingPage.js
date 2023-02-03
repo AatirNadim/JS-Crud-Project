@@ -35,6 +35,8 @@ const LandingPage = () => {
         sx = {{
           padding: "1rem 1.5rem",
           marginLeft: "2.4rem",
+          color: "#847878",
+          fontWeight: "bold",
         }}
         >
           LOGO  
@@ -65,6 +67,8 @@ const LandingPage = () => {
       <Grid
         container
         direction="row"
+        display="flex"
+        flexDirection="row"
       >
         <Sidebar />
         <Box>
