@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 // import {auth} from '../firebaseConfig'
 // import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth'
@@ -16,13 +16,17 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 // import FormControl from '@mui/material/FormControl';
 import Box from '@mui/material/Box';
 import { Button, Typography } from '@mui/material';
-import { color } from '@mui/system';
 // import TextField from '@mui/material/TextField';
+
+import { useRecoilState } from 'recoil';
+import { loginState } from '../StateAtoms/loginAtom';
 
 export const Login = () => {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [showPassword, setShowPassword] = React.useState(false);
+
+  const [login, setLogin] = useRecoilState(loginState);
   const handleSignUp = (e) => {
     e.preventDefault();
     //     createUserWithEmailAndPassword(auth, email, password)
@@ -38,6 +42,7 @@ export const Login = () => {
     //         console.log(error);
     //         // ..
     //     });
+    setLogin({email : email, password : password})
 
   }
   const handleSignIn = (e) => {
@@ -62,6 +67,10 @@ export const Login = () => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
+  useEffect(() => {
+    console.log(login);
+  }, [login])
   return (
     <div>
       <Box
