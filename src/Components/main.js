@@ -244,7 +244,7 @@ export default function DrawerMain() {
       <Main open={open}>
         <DrawerHeader />
         {
-          tab === 0 ? <AddStudent /> : tab === 1 ? <ManageStudent /> : <AddStudent />
+          tab === 0 ? <AddStudent /> : tab === 1 ? <ManageStudent /> : setLogin({loggedIn : false, email : ''})
         }
       </Main>
     </Box>

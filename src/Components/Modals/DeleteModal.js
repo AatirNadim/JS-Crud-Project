@@ -3,6 +3,8 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import { modalAtom } from '../../StateAtoms/modalAtom';
+import { useRecoilState } from 'recoil';
 
 const style = {
   position: 'absolute',
@@ -16,16 +18,26 @@ const style = {
   p: 4,
 };
 
-export default function DeleteModal() {
+export const DeleteModal = (props)  => {
   const [open, setOpen] = React.useState(true);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => { setOpen(false)};
 
+  const [modalStr, setModalStr] = useRecoilState(modalAtom);
+  console.log('delete modal');
+  // React.useEffect(() => {
+  //   console.log('delete modal useEffect');
+  //   setOpen(true);
+  // }, [])
+  // console.log(props);
   return (
-
+    // <></>
     <Modal
-      open={open}
-      // onClose={handleClose}
+      open={modalStr.selectedModal === 'DeleteModal'}
+      onClose={() => {
+        setModalStr({selectedModal: ''});
+        // handleClose();
+      }}  
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >

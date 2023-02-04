@@ -16,14 +16,14 @@ const style = {
   p: 4,
 };
 
-export default function BasicModal() {
+export const ViewModal = ()  => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
-    <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+    
+    // <div>
       <Modal
         open={open}
         onClose={handleClose}
@@ -39,6 +39,5 @@ export default function BasicModal() {
           </Typography>
         </Box>
       </Modal>
-    </div>
   );
 }
