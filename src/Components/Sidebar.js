@@ -4,15 +4,16 @@ import ListItem from './ListItem'
 
 const Sidebar = () => {
   return (
-    <Box 
-    sx = {{
-      flex: "0.2",
-    }}
-    >
-        <ListItem name = 'Add Student'/>
-        <ListItem name = 'Manage Students'/>
-        <ListItem name = 'Logout'/>
-    </Box>
+    // <Box 
+    // // sx = {{
+    // //   flex: "0.2",
+    // // }}
+    // >
+    //     <ListItem name = 'Add Student'/>
+    //     <ListItem name = 'Manage Students'/>
+    //     <ListItem name = 'Logout'/>
+    // </Box>
+    <></>
   )
 }
 

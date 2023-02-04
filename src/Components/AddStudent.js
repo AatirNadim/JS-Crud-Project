@@ -3,113 +3,312 @@ import { Grid } from '@mui/material'
 import { Box } from '@mui/system'
 import { Typography } from '@mui/material'
 import { TextField } from '@mui/material'
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
 
 import MenuItem from '@mui/material/MenuItem';
 
-const classes = [
-  { value: 1, label: 'I',},
-  { value: 2, label: 'II',},
-  { value: 3, label: 'III',},
-  { value: 4, label: 'IV', },
-  { value: 5, label: 'V', },
-  { value: 6, label: 'VI', },
-  { value: 7, label: 'VII', },
-  {value : 8, label : 'VIII' },
-  { value : 9, label : 'IX' },
-  { value : 10, label : 'X' },
-  { value : 11, label : 'XI' },
-  { value : 12, label : 'XII' },
-];
 
-const sections = [
-{value : 1, label : 'A'},
-{value : 2, label : 'B'},
-{value : 3, label : 'C'},
-{value : 4, label : 'D'},
-{value : 5, label : 'E'},
 
-]
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
+
 const AddStudent = () => {
   return (
-    <Box
-      sx={{
-        flex: "0.8",
-      }}
+    // <Box
+    // sx={{
+    //   flex: "0.8",
+    //   // backgroundColor: "red",
+    // }}
 
-    >
-      {/* header */}
+    // >
+    //   {/* header */}
+    //   <Box
+    //     sx={{
+    //       display: "flex",
+    //       justifyContent: "space-between",
+    //     }}
+    //   >
+    //     <Typography>ADD STUDENT</Typography>
+    //     <Box>Time</Box>
+    //   </Box>
+    //   {/* body */}
+    //   <Grid container>
+    //     <Grid container>
+    //       <Grid item>
+    //         <TextField
+    //           required
+    //           id="outlined-required"
+    //           label="First Name"
+    //         />
+    //       </Grid>
+    //       <Grid item>
+    //         <TextField
+    //           // required
+    //           id="outlined-required"
+    //           label="Middle Name"
+    //         />
+    //       </Grid>
+    //       <Grid item><TextField
+    //         required
+    //         id="outlined-required"
+    //         label="Last Name"
+    //       /></Grid>
+    //     </Grid>
+    //     <Grid container>
+    //       <Grid item>
+    //         <TextField
+    //           id="outlined-select-currency"
+    //           select
+    //           label="Select"
+    //           defaultValue={1}
+    //         // helperText="Please select your currency"
+    //         >
+    //           {classes.map((option) => (
+    //             <MenuItem key={option.value} value={option.value}>
+    //               {option.label}
+    //             </MenuItem>
+    //           ))}
+    //         </TextField>
+    //       </Grid>
+    //       <Grid item>
+    //         <TextField
+    //           id="outlined-select-currency"
+    //           select
+    //           label="Select"
+    //           defaultValue={1}
+    //           sx={{
+    //             '& .MuiTextField-root': { m: 1, width: '25ch' },
+    //             // backgroundColor: "red",
+    //           }}
+    //         // helperText="Please select your currency"
+    //         >
+    //           {sections.map((option) => (
+    //             <MenuItem key={option.value} value={option.value}>
+    //               {option.label}
+    //             </MenuItem>
+    //           ))}
+    //         </TextField>
+    //       </Grid>
+    //       <Grid item>val3</Grid>
+    //     </Grid>
+    //     <Grid container>
+    //       <Grid item>val1</Grid>
+    //       <Grid item>val2</Grid>
+    //       <Grid item>val3</Grid>
+    //     </Grid>
+    //   </Grid>
+    // </Box>
+    <>
       <Box
         sx={{
           display: "flex",
-          justifyContent: "space-between",
+          flexDirection: "column",
+          gap: "16px",
         }}
       >
-        <Typography>ADD STUDENT</Typography>
-        <Box>Time</Box>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            flexDirection: "row",
+
+          }}
+        >
+          <Typography>ADD STUDENT</Typography>
+          <Box>
+            {/* add currernt time in pretty format */}
+            Time
+          </Box>
+        </Box>
+        <Box sx={{ flexGrow: 1 }}>
+          <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+            {/* f1 */}
+            <Grid item xs={2} sm={4} md={4} >
+              <Item
+                sx={{
+                  //remove shadow
+                  boxShadow: "none",
+
+
+                }}
+              >
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="First Name"
+                  sx={{
+                    width: "100%",
+
+                  }}
+                />
+
+              </Item>
+            </Grid>
+                  {/* f2 */}
+            <Grid item xs={2} sm={4} md={4} >
+              <Item
+                sx={{
+                  //remove shadow
+                  boxShadow: "none",
+
+
+                }}
+              >
+                <TextField
+                  // required
+                  id="outlined-required"
+                  label="Middle Name"
+                  sx={{
+                    width: "100%",
+
+                  }}
+                />
+
+              </Item>
+            </Grid>
+              {/* f3 */}
+            <Grid item xs={2} sm={4} md={4} >
+              <Item
+                sx={{
+                  //remove shadow
+                  boxShadow: "none",
+
+
+                }}
+              >
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="Last Name"
+                  sx={{
+                    width: "100%",
+
+                  }}
+                />
+
+              </Item>
+            </Grid>
+                  {/* f4 */}
+            <Grid item xs={2} sm={4} md={4} >
+              <Item
+                sx={{
+                  //remove shadow
+                  boxShadow: "none",
+
+
+                }}
+              >
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="First Name"
+                  sx={{
+                    width: "100%",
+
+                  }}
+                />
+
+              </Item>
+            </Grid>
+                  {/* f5 */}
+            <Grid item xs={2} sm={4} md={4} >
+              <Item
+                sx={{
+                  //remove shadow
+                  boxShadow: "none",
+
+
+                }}
+              >
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="First Name"
+                  sx={{
+                    width: "100%",
+
+                  }}
+                />
+
+              </Item>
+            </Grid>
+                  {/* f6 */}
+            <Grid item xs={2} sm={4} md={4} >
+              <Item
+                sx={{
+                  //remove shadow
+                  boxShadow: "none",
+
+
+                }}
+              >
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="First Name"
+                  sx={{
+                    width: "100%",
+
+                  }}
+                />
+
+              </Item>
+            </Grid>
+            <Grid item xs={2} sm={4} md={4} >
+              <Item
+                sx={{
+                  //remove shadow
+                  boxShadow: "none",
+
+
+                }}
+              >
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="Last Name"
+                  sx={{
+                    width: "100%",
+
+                  }}
+                />
+
+              </Item>
+            </Grid>
+            <Grid item xs={2} sm={4} md={4} >
+              <Item
+                sx={{
+                  //remove shadow
+                  boxShadow: "none",
+
+
+                }}
+              >
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="Last Name"
+                  sx={{
+                    width: "100%",
+
+                  }}
+                />
+
+              </Item>
+            </Grid>
+           
+
+          </Grid>
+        </Box>
       </Box>
-      {/* body */}
-      <Grid container>
-        <Grid container>
-          <Grid item>
-            <TextField
-              required
-              id="outlined-required"
-              label="First Name"
-            />
-          </Grid>
-          <Grid item>
-            <TextField
-              // required
-              id="outlined-required"
-              label="Middle Name"
-            />
-          </Grid>
-          <Grid item><TextField
-            required
-            id="outlined-required"
-            label="Last Name"
-          /></Grid>
-        </Grid>
-        <Grid container>
-          <Grid item>
-          <TextField
-          id="outlined-select-currency"
-          select
-          label="Select"
-          defaultValue={1}
-          helperText="Please select your currency"
-        >
-          {classes.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-          </Grid>
-          <Grid item>
-          <TextField
-          id="outlined-select-currency"
-          select
-          label="Select"
-          defaultValue={1}
-          helperText="Please select your currency"
-        >
-          {sections.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-          </Grid>
-          <Grid item>val3</Grid>
-        </Grid>
-        <Grid container>
-          <Grid item>val1</Grid>
-          <Grid item>val2</Grid>
-          <Grid item>val3</Grid>
-        </Grid>
-      </Grid>
-    </Box>
+    </>
   )
 }
 
