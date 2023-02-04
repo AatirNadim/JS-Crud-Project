@@ -8,9 +8,9 @@ import Paper from '@mui/material/Paper';
 
 import { classes } from '../Constants/classes'
 import { sections } from '../Constants/sections'
+import { studentObj } from '../Constants/student'
 
 import MenuItem from '@mui/material/MenuItem';
-
 
 
 
@@ -22,7 +22,17 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
+
+
 const AddStudent = () => {
+
+  const [student, setStudent] = React.useState(studentObj)
+
+  const handleClick = () => {
+    console.log(student)
+  }
+
+
   return (
     // <Box
     // sx={{
@@ -151,6 +161,9 @@ const AddStudent = () => {
                     width: "100%",
 
                   }}
+                  onChange={(e) => {
+                    setStudent({ ...student, firstName: e.target.value })
+                  }}
                 />
 
               </Item>
@@ -172,6 +185,9 @@ const AddStudent = () => {
                   sx={{
                     width: "100%",
 
+                  }}
+                  onChange={(e) => {
+                    setStudent({ ...student, middleName: e.target.value })
                   }}
                 />
 
@@ -195,6 +211,9 @@ const AddStudent = () => {
                     width: "100%",
 
                   }}
+                  onChange={(e) => {
+                    setStudent({ ...student, lastName: e.target.value })
+                  }}
                 />
 
               </Item>
@@ -212,11 +231,14 @@ const AddStudent = () => {
                 <TextField
                   id="outlined-select-currency"
                   select
-                  label="Select"
+                  label="Class"
                   defaultValue={1}
                   sx={{
                     // backgroundColor: "red",
                     width: "100%",
+                  }}
+                  onChange={(e) => {
+                    setStudent({ ...student, class: e.target.value })
                   }}
                 // helperText="Please select your currency"
                 >
@@ -242,11 +264,14 @@ const AddStudent = () => {
                 <TextField
                   id="outlined-select-currency"
                   select
-                  label="Select"
+                  label="Section"
                   defaultValue={1}
                   sx={{
                     width: "100%",
                     // backgroundColor: "red",
+                  }}
+                  onChange={(e) => {
+                    setStudent({ ...student, section: e.target.value })
                   }}
                 // helperText="Please select your currency"
                 >
@@ -278,6 +303,9 @@ const AddStudent = () => {
                     width: "100%",
 
                   }}
+                  onChange={(e) => {
+                    setStudent({ ...student, rollNo: e.target.value })
+                  }}
                 />
 
               </Item>
@@ -301,6 +329,9 @@ const AddStudent = () => {
                   sx={{
                     width: "100%",
 
+                  }}
+                  onChange={(e) => {
+                    setStudent({ ...student, address: e.target.value })
                   }}
                 />
 
@@ -326,6 +357,10 @@ const AddStudent = () => {
                     width: "100%",
 
                   }}
+                  onChange={(e) => {
+                    setStudent({ ...student, address2: e.target.value })
+                  }}
+
                 />
 
               </Item>
@@ -347,6 +382,9 @@ const AddStudent = () => {
                   sx={{
                     width: "100%",
 
+                  }}
+                  onChange={(e) => {
+                    setStudent({ ...student, landmark: e.target.value })
                   }}
                 />
 
@@ -370,6 +408,9 @@ const AddStudent = () => {
                     width: "100%",
 
                   }}
+                  onChange={(e) => {
+                    setStudent({ ...student, city: e.target.value })
+                  }}
                 />
 
               </Item>
@@ -391,6 +432,9 @@ const AddStudent = () => {
                   sx={{
                     width: "100%",
 
+                  }}
+                  onChange={(e) => {
+                    setStudent({ ...student, pincode: e.target.value })
                   }}
                 />
 
@@ -417,6 +461,7 @@ const AddStudent = () => {
                   textTransform: "capitalize",
                   fontWeight: "550",
                 }}
+                onClick = {handleClick}
                 >Add student</Button>
 
               </Item>

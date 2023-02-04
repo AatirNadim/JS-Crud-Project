@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
 
-// import {auth} from '../firebaseConfig'
-// import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth'
+// import { auth } from '../firebaseConfig'
+
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+
 import IconButton from '@mui/material/IconButton';
 import Input from '@mui/material/Input';
 import FilledInput from '@mui/material/FilledInput';
@@ -29,38 +31,39 @@ export const Login = () => {
   const [login, setLogin] = useRecoilState(loginState);
   const handleSignUp = (e) => {
     e.preventDefault();
-    //     createUserWithEmailAndPassword(auth, email, password)
-    //     .then((userCredential) => {
-    //         // Signed in
-    //         const user = userCredential.user;
-    //         console.log(userCredential);
-    //         // ...
-    //     })
-    //     .catch((error) => {
-    //         const errorCode = error.code;
-    //         const errorMessage = error.message;
-    //         console.log(error);
-    //         // ..
-    //     });
-    console.log(email, password)
-    setLogin({email : email, password : password, loggedIn : true})
+    // createUserWithEmailAndPassword(auth, email, password)
+    //   .then((userCredential) => {
+    //     // Signed in
+    //     const user = userCredential.user;
+    //     console.log(userCredential);
+    //     // ...
+    //   })
+    //   .catch((error) => {
+    //     const errorCode = error.code;
+    //     const errorMessage = error.message;
+    //     console.log(error);
+    //     // ..
+    //   });
+    // console.log(email, password)
+    setLogin({ email: email, password: password, loggedIn: true })
     // console.log(login);
 
   }
   const handleSignIn = (e) => {
     e.preventDefault();
-    //     signInWithEmailAndPassword(auth, email, password)
-    //     .then((userCredential) => {
-    //         // Signed in
-    //         const user = userCredential.user;
-    //         console.log(userCredential);
-    //         // ...
-    //     })
-    //     .catch((error) => {
-    //         const errorCode = error.code;
-    //         const errorMessage = error.message;
-    //         console.log(error)
-    //     });
+    // signInWithEmailAndPassword(auth, email, password)
+    //   .then((userCredential) => {
+    //     // Signed in
+    //     const user = userCredential.user;
+    //     console.log(userCredential);
+    //     // ...
+    //   })
+    //   .catch((error) => {
+    //     const errorCode = error.code;
+    //     const errorMessage = error.message;
+    //     console.log(error)
+    //   });
+    // console.log('sign in')
   }
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -108,7 +111,7 @@ export const Login = () => {
           }}
           onChange={(e) => {
             setEmail(e.target.value)
-            console.log(email);
+            // console.log(email);
           }}
         />
         {/* <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
@@ -131,7 +134,7 @@ export const Login = () => {
             // sx = {{backgroundColor: 'red'}}
             onChange={(e) => {
               setPassword(e.target.value)
-              console.log(password);
+              // console.log(password);
               // setTimeout(() => {
               //   console.log(password)
               // }, 1000)
@@ -176,6 +179,7 @@ export const Login = () => {
               color: '#ff2108',
               fontWeight: 'bold',
             }}
+            onClick={handleSignIn}
           >
             {/* <Typography
               sx={{

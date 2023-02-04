@@ -10,21 +10,34 @@ import { backdropClasses, List, ListItem, ListItemButton, Typography } from '@mu
 import { Box } from '@mui/system';
 import { View, Edit, Delete } from '../Assets/icons';
 
+import DeleteModal from './Modals/DeleteModal';
+import { studentObj } from '../Constants/student'; 
+import { filler_rows } from '../Constants/filler_rows';
+import { classes } from '../Constants/classes';
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs };
-}
+import { useRecoilState } from 'recoil';
+import { studentAtom } from '../StateAtoms/studentAtom';
 
-const rows = [
-  createData('Aatir', 159, 6.0, 24, 4.0),
-  createData('Nadim', 237, 9.0, 37, 4.3),
-  createData('Bosdmon', 262, 16.0, 24, 6.0),
-  createData('Cheems', 305, 3.7, 67, 4.3),
-  createData('abdabi', 356, 16.0, 49, 3.9),
-];
+// function createData(name, calories, fat, carbs, protein) {
+//   return { name, calories, fat, carbs };
+// }
 
 // console.log(rows);
 export default function BasicTable() {
+
+  const [student, setStudent] = useRecoilState(studentAtom);
+
+  const handleView = () => {
+    console.log('View');
+  };
+  const handleEdit = () => {
+    console.log('Edit');
+  }
+
+  const handleDelete = () => {
+    <DeleteModal />
+    console.log('Delete')
+  }
   return (
     <Box>
       <Box
@@ -73,7 +86,7 @@ export default function BasicTable() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row, idx) => (
+              {filler_rows.map((row, idx) => (
                 <TableRow
                   key={row.name}
                   sx={{
@@ -85,38 +98,80 @@ export default function BasicTable() {
                   }}
                 >
                   <TableCell align="center" component="th" scope="row">
-                    {row.name}
+                    {`${row.firstName} ${row.lastName}`}
                   </TableCell>
-                  <TableCell align="center">{row.calories}</TableCell>
-                  <TableCell align="center">{row.carbs}</TableCell>
-                  <TableCell align="center">
+                  <TableCell align="center">{classes[row.class - 1].label}</TableCell>
+                  <TableCell align="center">{row.rollNo}</TableCell>
+                  <TableCell align="center"
+                  sx = {{
+                    width: '300px',
+                    padding: '0px',
+                  }}
+                  >
                   <List 
                   sx = {{
                     display: 'flex',
                     justifyContent: 'space-around',
                     alignItems  : 'center', 
+                    width: '300px', 
+                    // padding: '0px',
+                    margin: '0px',
                   }}
                   >
                     <ListItem disablePadding
                     sx = {{
-                      // backgroundColor : '#f33823',
+                      '&:hover': {
+                        backgroundColor: '#ffe0e0',
+                      },
+                      // backgroundColor : 'yellow',
                       width: '100px',
+                      display: 'flex',
+                      height: '30px',
+                      justifyContent: 'center',
+                      borderRadius: '4px',
+                      margin : '3px',
+                      cursor: 'pointer',
                     }}
+
+                    onClick = {handleView}
                     >
                       {View}
                     </ListItem>
                     <ListItem  disablePadding
                     sx = {{
-                      // backgroundColor : '#f33823',
+                      '&:hover': {
+                        backgroundColor: '#ffe0e0',
+                      },
+                      // backgroundColor : 'yellow',
                       width: '100px',
-                    }}>
+                      height: '30px',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      borderRadius: '4px',
+                      margin : '3px',
+                      cursor: 'pointer',
+                    }}
+                    onClick = {handleEdit}
+                    
+                    >
                       {Edit}
                     </ListItem>
                     <ListItem disablePadding
                     sx = {{
-                      // backgroundColor : '#f33823',
+                      '&:hover': {
+                        backgroundColor: '#ffe0e0',
+                      },
+                      // backgroundColor : 'yellow',
+                      height: '30px',
                       width: '100px',
-                    }}>
+                      display: 'flex',
+                      justifyContent: 'center',
+                      borderRadius: '4px',
+                      margin : '3px',
+                      cursor: 'pointer',
+                    }}
+                    onClick = {handleDelete}
+                    >
                       {Delete}
                     </ListItem>
                   </List>
