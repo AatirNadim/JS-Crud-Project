@@ -21,6 +21,9 @@ import MailIcon from '@mui/icons-material/Mail';
 import Avatar from '@mui/material/Avatar';
 import AddStudent from './AddStudent';
 import ManageStudent from './ManageStudent';
+import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 import { useRecoilState } from 'recoil';
 import { loginState } from '../StateAtoms/loginAtom';
@@ -89,19 +92,24 @@ export default function DrawerMain() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar position="fixed" open={open}
+      sx = {{
+        backgroundColor: '#fffcfb',
+        boxShadow: 'none',
+      }}
+      >
         <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={{ mr: 2, ...(open && { display: 'none' }) }}
+            sx={{ mr: 2, ...(open && { display: 'none' }), color : '#f33823' }}
           >
             <MenuIcon />
           </IconButton>
-          {!open ? <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Logo
+          {!open ? <Typography variant="h6" component="div" sx={{ flexGrow: 1 , color : '#847878'}}>
+            LOGO
           </Typography> : <Typography></Typography>
           }
           <Box
@@ -120,14 +128,21 @@ export default function DrawerMain() {
                 flexDirection: 'row',
                 gap: '10px',
                 width: '100%',
-                padding: '5px',
+                padding: '5px 14px',
                 verticalAlign: 'center',
                 alignItems: 'center',
                 justifyContent: 'space-evenly',
+                // border: '1px solid black', 
+                boxShadow: '0px 0px 3px 0px grey', 
+                borderRadius: '5px',
               }}
             >
               <Avatar src="/broken-image.jpg" />
-              <Typography variant="h6" component="div" >
+              <Typography variant="h6" component="div" 
+              sx = {{
+                color : '#847878',
+              }}
+              >
                 {login.loggedIn ? login.email : 'User'}
               </Typography>
 
@@ -150,10 +165,11 @@ export default function DrawerMain() {
       >
         <DrawerHeader
           sx={{
+            border : 'none',   
           }}
         >
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Logo
+            LOGO
           </Typography>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
@@ -161,17 +177,50 @@ export default function DrawerMain() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding>
+          {['Add Student', 'Manage Student', 'Logout'].map((text, index) => (
+            <ListItem key={text} disablePadding
+            sx = {{
+              backgroundColor : tab === index ? '#fffcfb' : '#fffcfb',
+              color : tab === index ? 'white' : '#514949',
+            }}
+            >
               <ListItemButton
                 onClick={
                   () => {
                     setTab(index);
                   }
+                  
                 }
+                sx = {{
+                  '&:hover': {
+                    backgroundColor : '#f33823',
+                    color : 'white',
+                  },
+                  margin : '2px 4px',
+                  backgroundColor : tab === index ? '#f33823' : '#fffcfb',
+                  borderRadius  : '5px',
+                }}
               >
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {/* {index % 2 === 0 ? <PersonAddAltIcon /> : <ManageAccountsIcon />} */}
+                  {
+                    index === 0 ? <PersonAddAltIcon 
+                      sx = {{
+                        '&:hover': {
+                          color  : 'white',
+                        },
+                        color : tab === index ? 'white' : '#514949',
+                      }}
+                    
+                    /> : index === 1 ? <ManageAccountsIcon
+                      sx = {{
+                        '&:hover': {
+                          color  : 'white',
+                        },
+                        color : tab === index ? 'white' : '#514949',
+                      }}
+                    /> : <LogoutIcon />
+                  }
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>
@@ -179,7 +228,7 @@ export default function DrawerMain() {
           ))}
         </List>
         <Divider />
-        <List>
+        {/* <List>
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
@@ -190,7 +239,7 @@ export default function DrawerMain() {
               </ListItemButton>
             </ListItem>
           ))}
-        </List>
+        </List> */}
       </Drawer>
       <Main open={open}>
         <DrawerHeader />

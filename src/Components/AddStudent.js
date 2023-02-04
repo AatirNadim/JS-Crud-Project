@@ -6,6 +6,9 @@ import { TextField } from '@mui/material'
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 
+import { classes } from '../Constants/classes'
+import { sections } from '../Constants/sections'
+
 import MenuItem from '@mui/material/MenuItem';
 
 
@@ -111,6 +114,7 @@ const AddStudent = () => {
           display: "flex",
           flexDirection: "column",
           gap: "16px",
+          backgroundColor: "#fffcfb ",
         }}
       >
         <Box
@@ -151,7 +155,7 @@ const AddStudent = () => {
 
               </Item>
             </Grid>
-                  {/* f2 */}
+            {/* f2 */}
             <Grid item xs={2} sm={4} md={4} >
               <Item
                 sx={{
@@ -173,7 +177,7 @@ const AddStudent = () => {
 
               </Item>
             </Grid>
-              {/* f3 */}
+            {/* f3 */}
             <Grid item xs={2} sm={4} md={4} >
               <Item
                 sx={{
@@ -195,7 +199,67 @@ const AddStudent = () => {
 
               </Item>
             </Grid>
-                  {/* f4 */}
+            {/* f4 */}
+            <Grid item xs={2} sm={4} md={4} >
+              <Item
+                sx={{
+                  //remove shadow
+                  boxShadow: "none",
+                  // backgroundColor: "red",
+
+                }}
+              >
+                <TextField
+                  id="outlined-select-currency"
+                  select
+                  label="Select"
+                  defaultValue={1}
+                  sx = {{
+                    // backgroundColor: "red",
+                    width: "100%",
+                  }}
+                // helperText="Please select your currency"
+                >
+                  {classes.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
+
+              </Item>
+            </Grid>
+            {/* f5 */}
+            <Grid item xs={2} sm={4} md={4} >
+              <Item
+                sx={{
+                  //remove shadow
+                  boxShadow: "none",
+
+
+                }}
+              >
+                <TextField
+                  id="outlined-select-currency"
+                  select
+                  label="Select"
+                  defaultValue={1}
+                  sx={{
+                    width: "100%",
+                    // backgroundColor: "red",
+                  }}
+                // helperText="Please select your currency"
+                >
+                  {sections.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
+
+              </Item>
+            </Grid>
+            {/* f6 */}
             <Grid item xs={2} sm={4} md={4} >
               <Item
                 sx={{
@@ -208,7 +272,8 @@ const AddStudent = () => {
                 <TextField
                   required
                   id="outlined-required"
-                  label="First Name"
+                  label="Roll No"
+                  placeholder='Enter roll number in digits'
                   sx={{
                     width: "100%",
 
@@ -217,7 +282,55 @@ const AddStudent = () => {
 
               </Item>
             </Grid>
-                  {/* f5 */}
+            {/* f7 */}
+            <Grid item xs={6} sm={6} md={6} >
+              <Item
+                sx={{
+                  //remove shadow
+                  boxShadow: "none",
+
+
+                }}
+              >
+                <TextField
+                  // required
+                  multiline
+                  rows={1}
+                  id="outlined-required"
+                  label="Address Line1"
+                  sx={{
+                    width: "100%",
+
+                  }}
+                />
+
+              </Item>
+            </Grid>
+            {/* f8 */}
+            <Grid item xs={6} sm={6} md={6} >
+              <Item
+                sx={{
+                  //remove shadow
+                  boxShadow: "none",
+
+
+                }}
+              >
+                <TextField
+                  // required
+                  multiline
+                  rows={1}
+                  id="outlined-required"
+                  label="Address Line2"
+                  sx={{
+                    width: "100%",
+
+                  }}
+                />
+
+              </Item>
+            </Grid>
+            {/* f9 */}
             <Grid item xs={2} sm={4} md={4} >
               <Item
                 sx={{
@@ -228,9 +341,9 @@ const AddStudent = () => {
                 }}
               >
                 <TextField
-                  required
+                  // required
                   id="outlined-required"
-                  label="First Name"
+                  label="Landmark"
                   sx={{
                     width: "100%",
 
@@ -239,7 +352,7 @@ const AddStudent = () => {
 
               </Item>
             </Grid>
-                  {/* f6 */}
+            {/* f10 */}
             <Grid item xs={2} sm={4} md={4} >
               <Item
                 sx={{
@@ -250,9 +363,9 @@ const AddStudent = () => {
                 }}
               >
                 <TextField
-                  required
+                  // required
                   id="outlined-required"
-                  label="First Name"
+                  label="City"
                   sx={{
                     width: "100%",
 
@@ -261,6 +374,7 @@ const AddStudent = () => {
 
               </Item>
             </Grid>
+            {/* f11 */}
             <Grid item xs={2} sm={4} md={4} >
               <Item
                 sx={{
@@ -271,9 +385,9 @@ const AddStudent = () => {
                 }}
               >
                 <TextField
-                  required
+                  // required
                   id="outlined-required"
-                  label="Last Name"
+                  label="Pin Code"
                   sx={{
                     width: "100%",
 
@@ -282,28 +396,6 @@ const AddStudent = () => {
 
               </Item>
             </Grid>
-            <Grid item xs={2} sm={4} md={4} >
-              <Item
-                sx={{
-                  //remove shadow
-                  boxShadow: "none",
-
-
-                }}
-              >
-                <TextField
-                  required
-                  id="outlined-required"
-                  label="Last Name"
-                  sx={{
-                    width: "100%",
-
-                  }}
-                />
-
-              </Item>
-            </Grid>
-           
 
           </Grid>
         </Box>
