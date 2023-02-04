@@ -16,6 +16,7 @@ import { ViewModal } from './Modals/ViewModal';
 import { studentObj } from '../Constants/student';
 import { filler_rows } from '../Constants/filler_rows';
 import { classes } from '../Constants/classes';
+import DeleteStudent from './DeleteStudent';
 
 import { useRecoilState } from 'recoil';
 import { studentAtom } from '../StateAtoms/studentAtom';
@@ -66,8 +67,6 @@ export default function BasicTable() {
   }
   return (
     <Box>
-      <DeleteModal />
-      <EditModal /> <ViewModal />
 
       <Box
         sx={{
@@ -167,6 +166,7 @@ export default function BasicTable() {
                           setEdit(false);
                           setView(true);
                           setOpen(true);
+                          setStudent(row);
                           setSelectedModal('ViewModal');
                         }}
                       >
@@ -190,6 +190,7 @@ export default function BasicTable() {
                           // setDel(false);
                           // setEdit(true);
                           // setView(false);
+                          setStudent(row);
                           setOpen(true);
                           console.log('Edit');
                           setSelectedModal('EditModal');
@@ -245,17 +246,19 @@ export default function BasicTable() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+          {/* <Typography id="modal-modal-title" variant="h6" component="h2">
             Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          </Typography> */}
+          {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
+          </Typography> */}
           {selectedModal === 'EditModal' ?
-            <>i am edit content</> : selectedModal === 'DeleteModal' ? <>i am delete modal</> : <>
+            <>i am edit content</> : selectedModal === 'DeleteModal' ? <DeleteStudent/> : <>
               i am view modal
             </>
           }
+          <Typography>{student.firstName}</Typography>
+          {/* aslaksasklks */}
         </Box>
       </Modal>
     </Box>

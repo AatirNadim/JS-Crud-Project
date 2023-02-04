@@ -3,6 +3,8 @@ import { atom } from "recoil";
 export const modalAtom = atom({
     key: "modalAtom",
     default: {
-        selectedModal: "",
+        selectedModal: "edit__state",
+        // selectedModal: "view__state",
+        // selectedModal: "delete__state",
     }
 })
