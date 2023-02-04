@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid } from '@mui/material'
+import { Button, Grid } from '@mui/material'
 import { Box } from '@mui/system'
 import { Typography } from '@mui/material'
 import { TextField } from '@mui/material'
@@ -214,7 +214,7 @@ const AddStudent = () => {
                   select
                   label="Select"
                   defaultValue={1}
-                  sx = {{
+                  sx={{
                     // backgroundColor: "red",
                     width: "100%",
                   }}
@@ -395,6 +395,32 @@ const AddStudent = () => {
                 />
 
               </Item>
+            </Grid>
+            <Grid item xs={2} sm={4} md={4} >
+              <Item
+                sx={{
+                  //remove shadow
+                  boxShadow: "none",
+
+                  width: "100%",
+                  padding: "0px",
+                }}
+              >
+                <Button
+                sx = {{
+                  '&:hover': {
+                    backgroundColor: '#c02c1b',
+                  },
+                  width: "100%",
+                  backgroundColor: "#ff2108",
+                  color: "white",
+                  textTransform: "capitalize",
+                  fontWeight: "550",
+                }}
+                >Add student</Button>
+
+              </Item>
+
             </Grid>
 
           </Grid>
