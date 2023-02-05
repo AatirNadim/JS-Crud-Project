@@ -25,6 +25,8 @@ import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import LogoutIcon from '@mui/icons-material/Logout';
 
+import { useMediaQuery } from '@mui/material';
+
 import { useRecoilState } from 'recoil';
 import { loginState } from '../StateAtoms/loginAtom';
 
@@ -81,6 +83,9 @@ export default function DrawerMain() {
   const [open, setOpen] = React.useState(false);
   const [tab, setTab] = React.useState(0);
   const [login, setLogin] = useRecoilState(loginState);
+
+  const matches = useMediaQuery('(min-width:500px)');
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -111,7 +116,7 @@ export default function DrawerMain() {
           >
             <MenuIcon />
           </IconButton>
-          {!open ? <Typography variant="h6" component="div" sx={{ color : '#847878',
+          {!open && matches ? <Typography variant="h6" component="div" sx={{ color : '#847878',
           width: 'fit-content',
         }}>
             LOGO

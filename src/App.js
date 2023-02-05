@@ -42,7 +42,17 @@ function App() {
   // console.log(login.email.length);
   return (
     <ThemeProvider theme={theme}>
-    <div>
+    <div 
+    style = {{
+      maxWidth: '100vw',
+      // backgroundColor: '#f5f5f5',
+      width: '100%',
+      height: '100vh',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
+    >
       {login.loggedIn ? <LandingPage/> :<Login />}
     </div>
     {/* // </RecoilRoot> */}

@@ -48,10 +48,11 @@ const CssTextField = styled(TextField)({
 
 
 export const Login = () => {
-  console.log('login page',auth)
+  // console.log('login page',auth)
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [showPassword, setShowPassword] = React.useState(false);
+
 
   const [login, setLogin] = useRecoilState(loginState);
   const handleSignUp = (e) => {
@@ -61,16 +62,18 @@ export const Login = () => {
         // Signed in
         const user = userCredential.user;
         console.log(userCredential);
+        setLogin({ email: email, password: password, loggedIn: true })
         // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(error);
+        alert(error.message)
         // ..
       });
-    console.log(email, password)
-    setLogin({ email: email, password: password, loggedIn: true })
+    // console.log(email, password)
+    // 
     // console.log(login);
 
   }
@@ -81,12 +84,14 @@ export const Login = () => {
         // Signed in
         const user = userCredential.user;
         console.log(userCredential);
+        setLogin({ email: email, password: password, loggedIn: true })
         // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(error)
+        alert(error.message)
       });
     console.log('sign in')
   }
@@ -101,6 +106,14 @@ export const Login = () => {
   // useEffect(() => {
   //   console.log(login);
   // }, [login])
+  // const handleKeyPress = (e) => {
+  //   if (e.key === 'Enter') {
+  //     handleSignIn();
+  //   }
+  //   console.log(e.key)
+  // }
+
+
   return (
     <div>
       <Box
@@ -117,6 +130,7 @@ export const Login = () => {
           backgroundColor: 'fffcfb',
           maxWidth: '100vw',
           boxSizing: 'border-box',
+          maxWidth :'90vw'
         }}
         noValidate
         autoComplete="off"
@@ -151,7 +165,7 @@ export const Login = () => {
               },
             },
             fontSize: '2rem',
-
+            maxWidth: '87vw',
           }}
           onChange={(e) => {
             setEmail(e.target.value)
@@ -187,7 +201,10 @@ export const Login = () => {
               borderColor: '#7a0d00',
             },
           },
-        }} variant="outlined">
+          maxWidth: '87vw',
+        }}
+        
+        variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
@@ -199,6 +216,13 @@ export const Login = () => {
               // setTimeout(() => {
               //   console.log(password)
               // }, 1000)
+            }}
+            onKeyPress={(e) => {
+              // e.preventDefault();
+              if(e.key === 'Enter'){
+                handleSignIn();
+              }
+              console.log(e.key)
             }}
             endAdornment={
               <InputAdornment position="end">
@@ -241,6 +265,7 @@ export const Login = () => {
               fontWeight: 'bold',
             }}
             onClick={handleSignIn}
+            
           >
             {/* <Typography
               sx={{
