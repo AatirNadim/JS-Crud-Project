@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 
-// import { auth } from '../firebaseConfig'
-
+import { auth } from '../firebaseConfig'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
 import IconButton from '@mui/material/IconButton';
@@ -22,8 +21,34 @@ import { Button, Typography } from '@mui/material';
 
 import { useRecoilState } from 'recoil';
 import { loginState } from '../StateAtoms/loginAtom';
+import styled from '@emotion/styled';
+
+const CssTextField = styled(TextField)({
+  '& label.Mui-focused': {
+    color: 'brown',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: 'green',
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: 'brown',
+    },
+    '&:hover fieldset': {
+      borderColor: 'brown',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: 'brown',
+    },
+  },
+});
+
+
+
+
 
 export const Login = () => {
+  console.log('login page',auth)
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [showPassword, setShowPassword] = React.useState(false);
@@ -31,39 +56,39 @@ export const Login = () => {
   const [login, setLogin] = useRecoilState(loginState);
   const handleSignUp = (e) => {
     e.preventDefault();
-    // createUserWithEmailAndPassword(auth, email, password)
-    //   .then((userCredential) => {
-    //     // Signed in
-    //     const user = userCredential.user;
-    //     console.log(userCredential);
-    //     // ...
-    //   })
-    //   .catch((error) => {
-    //     const errorCode = error.code;
-    //     const errorMessage = error.message;
-    //     console.log(error);
-    //     // ..
-    //   });
-    // console.log(email, password)
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(userCredential);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(error);
+        // ..
+      });
+    console.log(email, password)
     setLogin({ email: email, password: password, loggedIn: true })
     // console.log(login);
 
   }
   const handleSignIn = (e) => {
     e.preventDefault();
-    // signInWithEmailAndPassword(auth, email, password)
-    //   .then((userCredential) => {
-    //     // Signed in
-    //     const user = userCredential.user;
-    //     console.log(userCredential);
-    //     // ...
-    //   })
-    //   .catch((error) => {
-    //     const errorCode = error.code;
-    //     const errorMessage = error.message;
-    //     console.log(error)
-    //   });
-    // console.log('sign in')
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(userCredential);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(error)
+      });
+    console.log('sign in')
   }
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -86,7 +111,7 @@ export const Login = () => {
           flexDirection: 'column',
           width: 'fit-content',
           // backgroundColor: 'yellow',
-          border: '1px solid #ff2108',
+          border: '1px solid #7a0d00',
           padding: '1rem',
           borderRadius: '1rem',
           backgroundColor: 'fffcfb',
@@ -99,12 +124,31 @@ export const Login = () => {
         {/* <div> */}
         <TextField
           // required
+          // color="#ff2108"
           id="email_inp"
           label="Email ID"
           sx={{
-            '& label.Mui-focused ': {
-              borderColor: '#ff2108',
-              color: '#ff2108',
+            // '& label.Mui-focused ': {
+            //   borderColor: 'green',
+            //   color: '#ff2108',
+            //   // backgroundColor: '#ff2108',
+            // },
+            '& label.Mui-focused': {
+              color: '#7a0d00',
+            },
+            '& .MuiInput-underline:after': {
+              borderBottomColor: '#7a0d00',
+            },
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: '#7a0d00',
+              },
+              '&:hover fieldset': {
+                borderColor: '#7a0d00',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: '#7a0d00',
+              },
             },
             fontSize: '2rem',
 
@@ -125,6 +169,23 @@ export const Login = () => {
           '& label.Mui-focused ': {
             borderColor: '#ff2108',
             color: '#ff2108',
+          },
+          '& label.Mui-focused': {
+            color: '#7a0d00',
+          },
+          '& .MuiInput-underline:after': {
+            borderBottomColor: '#7a0d00',
+          },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+              borderColor: '#7a0d00',
+            },
+            '&:hover fieldset': {
+              borderColor: '#7a0d00',
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: '#7a0d00',
+            },
           },
         }} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>

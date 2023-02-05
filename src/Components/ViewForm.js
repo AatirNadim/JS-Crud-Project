@@ -34,7 +34,7 @@ export const ViewForm = () => {
 
   const [details, setDetails] = useRecoilState(studentAtom)
 
-  console.log(modal)
+  // console.log(modal)
 
   const handleClick = () => {
     console.log(student)

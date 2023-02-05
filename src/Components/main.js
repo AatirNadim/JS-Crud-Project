@@ -90,7 +90,10 @@ export default function DrawerMain() {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex',
+      // backgroundColor: 'green',
+    
+    }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}
       sx = {{
@@ -108,7 +111,9 @@ export default function DrawerMain() {
           >
             <MenuIcon />
           </IconButton>
-          {!open ? <Typography variant="h6" component="div" sx={{ flexGrow: 1 , color : '#847878'}}>
+          {!open ? <Typography variant="h6" component="div" sx={{ color : '#847878',
+          width: 'fit-content',
+        }}>
             LOGO
           </Typography> : <Typography></Typography>
           }
@@ -117,9 +122,12 @@ export default function DrawerMain() {
               display: 'flex',
               flexDirection: 'row',
               // backgroundColor: 'red',
-              width: '200px',
+              width: '300px',
               border: '1px solid white',
               borderRadius: '5px',
+              ml : 'auto',
+              mr : '20px',
+              // backgroundColor: 'yellow',
             }}
           >
             <Box
@@ -127,7 +135,7 @@ export default function DrawerMain() {
                 display: 'flex',
                 flexDirection: 'row',
                 gap: '10px',
-                width: '100%',
+                width: '300px',
                 padding: '5px 14px',
                 verticalAlign: 'center',
                 alignItems: 'center',
@@ -135,12 +143,14 @@ export default function DrawerMain() {
                 // border: '1px solid black', 
                 boxShadow: '0px 0px 3px 0px grey', 
                 borderRadius: '5px',
+                // backgroundColor: 'green',
               }}
             >
               <Avatar src="/broken-image.jpg" />
-              <Typography variant="h6" component="div" 
+              <Typography  component="div" 
               sx = {{
                 color : '#847878',
+                fontSize : '14px',
               }}
               >
                 {login.loggedIn ? login.email : 'User'}
@@ -201,13 +211,22 @@ export default function DrawerMain() {
                   borderRadius  : '5px',
                 }}
               >
-                <ListItemIcon>
+                <ListItemIcon
+                sx = {{
+                  // '&:hover': {
+                  //   backgroundColor : '#f33823',
+                  //   color : 'white',
+                  // },
+                }}
+                
+                >
                   {/* {index % 2 === 0 ? <PersonAddAltIcon /> : <ManageAccountsIcon />} */}
                   {
                     index === 0 ? <PersonAddAltIcon 
                       sx = {{
                         '&:hover': {
                           color  : 'white',
+                          // backgroundColor : 'green',
                         },
                         color : tab === index ? 'white' : '#514949',
                       }}
@@ -241,7 +260,11 @@ export default function DrawerMain() {
           ))}
         </List> */}
       </Drawer>
-      <Main open={open}>
+      <Main open={open}
+      sx = {{
+        backgroundColor : '#fffcfb',
+      }}
+      >
         <DrawerHeader />
         {
           tab === 0 ? <AddStudent /> : tab === 1 ? <ManageStudent /> : setLogin({loggedIn : false, email : ''})

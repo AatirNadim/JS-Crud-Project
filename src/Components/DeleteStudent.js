@@ -35,7 +35,7 @@ const DeleteStudent = () => {
               //   backgroundColor: 'red',
               // }
               color: '#ff2108',
-              fontWeight: 'bold',
+              // fontWeight: 'bold',
               textTransform: 'capitalize',
             //   fontSize : '1vw'
             }}
@@ -63,7 +63,7 @@ const DeleteStudent = () => {
               //   backgroundColor: 'red',
               // }
               color: '#ff2108',
-              fontWeight: 'bold',
+              // fontWeight: 'bold',
               textTransform: 'capitalize',
             }}
             // onClick={handleSignUp}

@@ -22,6 +22,8 @@ import { useRecoilState } from 'recoil';
 import { studentAtom } from '../StateAtoms/studentAtom';
 import { modalAtom } from '../StateAtoms/modalAtom';
 
+import { ViewForm } from './ViewForm';
+
 import Temp from './Modals/temp';
 import { SetMealOutlined } from '@mui/icons-material';
 
@@ -36,21 +38,28 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  // width: {modalStr.selectedModal === 'delete__state' ? '50%' : '80%'},
+  // width : '80%',
   bgcolor: 'white',
+  // bgcolor : {...modalAtom.selectedModal === 'delete__state' ? 'white' : 'green'},
   border: '2px solid #000',
   boxShadow: 24,
+  borderRadius: '10px',
   p: 4,
 };
 export default function BasicTable() {
 
+  // console.log(...modalAtom)
+
   const [student, setStudent] = useRecoilState(studentAtom);
-  // const [modalStr, setModalStr] = useRecoilState(modalAtom);
+  const [modalStr, setModalStr] = useRecoilState(modalAtom);
   const [selectedModal, setSelectedModal] = React.useState('');
   const [del, setDel] = React.useState(false);
   const [edit, setEdit] = React.useState(false);
   const [view, setView] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+
+  console.log(modalStr.selectedModal)
   const handleView = () => {
     console.log('View');
   };
@@ -245,7 +254,13 @@ export default function BasicTable() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={{
+          ...style, 
+          // width : {modalStr.login},
+          width : '80%',
+        }
+        // width: {modalStr.selectedModal === 'delete__state' ? '50%' : '80%'},
+        }>
           {/* <Typography id="modal-modal-title" variant="h6" component="h2">
             Text in a modal
           </Typography> */}
@@ -254,7 +269,7 @@ export default function BasicTable() {
           </Typography> */}
           {selectedModal === 'EditModal' ?
             <>i am edit content</> : selectedModal === 'DeleteModal' ? <DeleteStudent/> : <>
-              i am view modal
+              <ViewForm/>
             </>
           }
           <Typography>{student.firstName}</Typography>

@@ -21,6 +21,7 @@ const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   textAlign: 'center',
   color: theme.palette.text.secondary,
+  // zIndex: -1,
 }));
 
 
@@ -30,7 +31,7 @@ export const Form = () => {
   const [student, setStudent] = React.useState(studentObj)
   const [modal, setModal] = useRecoilState(modalAtom)
 
-  console.log(modal)
+  // console.log(modal)
 
   const handleClick = () => {
     console.log(student)
@@ -130,6 +131,7 @@ export const Form = () => {
           flexDirection: "column",
           gap: "16px",
           backgroundColor: "#fffcfb ",
+          // backgroundColor: "green",
         }}
       >
         <Box
@@ -140,7 +142,12 @@ export const Form = () => {
 
           }}
         >
-          <Typography>ADD STUDENT</Typography>
+          <Typography
+          sx = {{
+            // fontFamily: "Poppins",
+            fontWeight: "bold",
+          }}
+          >ADD STUDENT</Typography>
           <Box>
             {/* add currernt time in pretty format */}
             Time
@@ -154,7 +161,7 @@ export const Form = () => {
                 sx={{
                   //remove shadow
                   boxShadow: "none",
-
+                  // backgroundColor: "black",
 
                 }}
               >
@@ -165,7 +172,7 @@ export const Form = () => {
                   label="First Name"
                   sx={{
                     width: "100%",
-
+                    
                   }}
                   onChange={(e) => {
                     setStudent({ ...student, firstName: e.target.value })

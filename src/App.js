@@ -12,15 +12,41 @@ import { loginState } from './StateAtoms/loginAtom';
 import { useRecoilState } from 'recoil';
 
 import LandingPage from './Pages/LandingPage';
+import { createTheme, ThemeProvider } from '@mui/material';
+
+
+const theme = createTheme({
+  typography: {
+    fontFamily: [
+      // '-apple-system',
+      // 'BlinkMacSystemFont',
+      // '"Segoe UI"',
+      // 'Roboto',
+      // '"Helvetica Neue"',
+      // 'Arial',
+      // 'sans-serif',
+      // '"Apple Color Emoji"',
+      // '"Segoe UI Emoji"',
+      // '"Segoe UI Symbol"',
+      'Poppins'
+    ].join(','),
+  },
+});
+
+
+
+
+
 function App() {
   const [login, setLogin] = useRecoilState(loginState);
   // console.log(login.email.length);
   return (
-    
+    <ThemeProvider theme={theme}>
     <div>
       {login.loggedIn ? <LandingPage/> :<Login />}
     </div>
-    // </RecoilRoot>
+    {/* // </RecoilRoot> */}
+    </ThemeProvider>
   );
 }
 
