@@ -82,9 +82,13 @@ const LandingPage = () => {
 
     // </Grid>
     // 
-    <>
+    <Box
+    sx = {{
+      backgroundColor: '#fffcfb',
+    }}
+    >
       <DrawerMain />
-    </>
+    </Box>
   )
 }
 

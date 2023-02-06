@@ -83,7 +83,7 @@ export const Login = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log(userCredential);
+        // console.log(userCredential);
         setLogin({ email: email, password: password, loggedIn: true })
         // ...
       })
@@ -93,7 +93,7 @@ export const Login = () => {
         console.log(error)
         alert(error.message)
       });
-    console.log('sign in')
+    // console.log('sign in')
   }
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);

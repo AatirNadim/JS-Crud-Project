@@ -32,7 +32,7 @@ export const ViewForm = () => {
   const [student, setStudent] = React.useState(studentObj)
   const [modal, setModal] = useRecoilState(modalAtom)
 
-  const [details, setDetails] = useRecoilState(studentAtom)
+  const [studentState, setStudentState] = useRecoilState(studentAtom)
 
   // console.log(modal)
 
@@ -173,7 +173,7 @@ export const ViewForm = () => {
                     width: "100%",
 
                   }}
-                  placeholder={details.firstName}
+                  placeholder={studentState.firstName}
                   onChange={(e) => {
                     setStudent({ ...student, firstName: e.target.value })
                   }}
@@ -200,7 +200,7 @@ export const ViewForm = () => {
                     width: "100%",
 
                   }}
-                  placeholder={details.middleName}
+                  placeholder={studentState.middleName}
                   onChange={(e) => {
                     setStudent({ ...student, middleName: e.target.value })
                   }}
@@ -229,7 +229,7 @@ export const ViewForm = () => {
                   onChange={(e) => {
                     setStudent({ ...student, lastName: e.target.value })
                   }}
-                  placeholder={details.lastName}
+                  placeholder={studentState.lastName}
                 />
 
               </Item>
@@ -317,7 +317,7 @@ export const ViewForm = () => {
                   required
                   id="outlined-required"
                   // label="Roll No"
-                  placeholder={details.rollNo}
+                  placeholder={studentState.rollNo}
                   sx={{
                     width: "100%",
 
@@ -353,7 +353,7 @@ export const ViewForm = () => {
                   onChange={(e) => {
                     setStudent({ ...student, address: e.target.value })
                   }}
-                  placeholder={details.address1}
+                  placeholder={studentState.address1}
                 />
 
               </Item>
@@ -382,7 +382,7 @@ export const ViewForm = () => {
                   onChange={(e) => {
                     setStudent({ ...student, address2: e.target.value })
                   }}
-                  placeholder={details.address2}
+                  placeholder={studentState.address2}
 
                 />
 
@@ -410,7 +410,7 @@ export const ViewForm = () => {
                   onChange={(e) => {
                     setStudent({ ...student, landmark: e.target.value })
                   }}
-                  placeholder={details.landmark}
+                  placeholder={studentState.landmark}
                 />
 
               </Item>
@@ -437,7 +437,7 @@ export const ViewForm = () => {
                   onChange={(e) => {
                     setStudent({ ...student, city: e.target.value })
                   }}
-                  placeholder={details.city}
+                  placeholder={studentState.city}
                 />
 
               </Item>
@@ -454,6 +454,7 @@ export const ViewForm = () => {
               >
                 <TextField
                   // required
+                  disabled
                   id="outlined-required"
                   // label="Pin Code"
                   sx={{
@@ -463,7 +464,7 @@ export const ViewForm = () => {
                   onChange={(e) => {
                     setStudent({ ...student, pincode: e.target.value })
                   }}
-                  placeholder={details.pincode}
+                  placeholder={studentState.pincode}
                 />
 
               </Item>

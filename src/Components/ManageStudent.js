@@ -22,13 +22,12 @@ import { useRecoilState } from 'recoil';
 import { studentAtom } from '../StateAtoms/studentAtom';
 import { modalAtom } from '../StateAtoms/modalAtom';
 
+import { Form } from './Form';
 import { ViewForm } from './ViewForm';
 
 import { db } from '../firebaseConfig';
-import { getDatabase, ref, onChildAdded, onChildChanged, onChildRemoved, onValue } from "firebase/database"; 
+import { getDatabase, ref, onChildAdded, onChildChanged, onChildRemoved, onValue } from "firebase/database";
 
-import Temp from './Modals/temp';
-import { SetMealOutlined } from '@mui/icons-material';
 
 // function createData(name, calories, fat, carbs, protein) {
 //   return { name, calories, fat, carbs };
@@ -61,19 +60,23 @@ export default function BasicTable() {
   const [edit, setEdit] = React.useState(false);
   const [view, setView] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+  const [studentArr, setStudentArr] = React.useState([]);
+
 
   // console.log(modalStr.selectedModal)
 
   const dbRef = ref(db, '/children');
   React.useEffect(() => {
-    console.log('useEffect')
+    // console.log('useEffect')
     onValue(dbRef, (snapshot) => {
       snapshot.forEach((childSnapshot) => {
-        console.log(childSnapshot.val());
+        // console.log(childSnapshot.val());
+        setStudentArr((prevState) => [...prevState, childSnapshot])
       })
+      // console.log(studentArr);
     })
   }, [])
-  
+
 
 
 
@@ -94,9 +97,9 @@ export default function BasicTable() {
   }
   return (
     <Box
-    sx = {{
-      backgroundColor : 'green',
-    }}
+      sx={{
+        backgroundColor: '#fffcfb',
+      }}
     >
 
       <Box
@@ -145,9 +148,10 @@ export default function BasicTable() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {filler_rows.map((row, idx) => (
+              {studentArr.map((row, idx) => (
+                // console.log(row),
                 <TableRow
-                  key={row.name}
+                  key={row.val().name}
                   sx={{
                     '&:last-child td, &:last-child th': { border: 0 },
 
@@ -157,10 +161,10 @@ export default function BasicTable() {
                   }}
                 >
                   <TableCell align="center" component="th" scope="row">
-                    {`${row.firstName} ${row.lastName}`}
+                    {`${row.val().firstName} ${row.val().lastName}`}
                   </TableCell>
-                  <TableCell align="center">{classes[row.class - 1].label}</TableCell>
-                  <TableCell align="center">{row.rollNo}</TableCell>
+                  <TableCell align="center">{classes[row.val().class - 1].label}</TableCell>
+                  <TableCell align="center">{row.val().rollNo}</TableCell>
                   <TableCell align="center"
                     sx={{
                       width: '300px',
@@ -197,8 +201,12 @@ export default function BasicTable() {
                           setEdit(false);
                           setView(true);
                           setOpen(true);
-                          setStudent(row);
+                          setStudent(row.val());
+                          // console.log(row);
                           setSelectedModal('ViewModal');
+                          setModalStr({
+                            selectedModal: 'view__state',
+                          })
                         }}
                       >
                         {View}
@@ -221,10 +229,14 @@ export default function BasicTable() {
                           // setDel(false);
                           // setEdit(true);
                           // setView(false);
-                          setStudent(row);
+                          setStudent(row.val());
                           setOpen(true);
-                          console.log('Edit');
+                          // console.log('Edit');
                           setSelectedModal('EditModal');
+                          setModalStr({
+                            selectedModal: 'edit__state',
+                          });
+                          
                         }}
 
                       >
@@ -245,7 +257,7 @@ export default function BasicTable() {
                           cursor: 'pointer',
                         }}
                         onClick={() => {
-                          setStudent(row);
+                          setStudent(row.val());
                           console.log(student);
                           // <DeleteModal />;
                           setOpen(true);
@@ -254,6 +266,9 @@ export default function BasicTable() {
                           setView(false);
                           setSelectedModal('DeleteModal');
                           // setModalStr('DeleteModal')
+                          setModalStr({
+                            selectedModal: 'delete__state',
+                          })
                           // <Temp />
                         }}
                       >
@@ -275,13 +290,15 @@ export default function BasicTable() {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+         sx = {{
+            // backgroundColor : modalStr.selectedModal === 'delete__state' ? 'red' : 'blue',
+         }}               
       >
         <Box sx={{
-          ...style, 
-          // width : {modalStr.login},
-          width : '80%',
+          ...style,
+          width: modalStr.selectedModal === 'delete__state' ? '50%' : '80%',
         }
-        // width: {modalStr.selectedModal === 'delete__state' ? '50%' : '80%'},
+          // width: {modalStr.selectedModal === 'delete__state' ? '50%' : '80%'},
         }>
           {/* <Typography id="modal-modal-title" variant="h6" component="h2">
             Text in a modal
@@ -290,11 +307,11 @@ export default function BasicTable() {
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
           </Typography> */}
           {selectedModal === 'EditModal' ?
-            <>i am edit content</> : selectedModal === 'DeleteModal' ? <DeleteStudent/> : <>
-              <ViewForm/>
+            <Form/> : selectedModal === 'DeleteModal' ? <DeleteStudent /> : <>
+              <ViewForm />
             </>
           }
-          <Typography>{student.firstName}</Typography>
+          {/* <Typography>{student.firstName}</Typography> */}
           {/* aslaksasklks */}
         </Box>
       </Modal>

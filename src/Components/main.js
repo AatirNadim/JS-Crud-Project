@@ -30,6 +30,10 @@ import { useMediaQuery } from '@mui/material';
 import { useRecoilState } from 'recoil';
 import { loginState } from '../StateAtoms/loginAtom';
 
+// import { useRecoilState } from 'recoil';
+import { studentAtom } from '../StateAtoms/studentAtom';
+import { studentObj } from '../Constants/student';
+
 
 const drawerWidth = 240;
 
@@ -83,6 +87,8 @@ export default function DrawerMain() {
   const [open, setOpen] = React.useState(false);
   const [tab, setTab] = React.useState(0);
   const [login, setLogin] = useRecoilState(loginState);
+
+  const [student, setStudent] = useRecoilState(studentAtom);
 
   const matches = useMediaQuery('(min-width:500px)');
 
@@ -203,6 +209,9 @@ export default function DrawerMain() {
                 onClick={
                   () => {
                     setTab(index);
+                    if(index === 0) {
+                      setStudent(studentObj)
+                    }
                   }
                   
                 }
@@ -267,7 +276,7 @@ export default function DrawerMain() {
       </Drawer>
       <Main open={open}
       sx = {{
-        backgroundColor : 'blue',
+        backgroundColor : '#fffcfb',
         width : '100vw',
       }}
       >

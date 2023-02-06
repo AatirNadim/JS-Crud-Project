@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import React from 'react';
 import './App.css';
-import {Login} from './Pages/Login';
+import { Login } from './Pages/Login';
 import AddStudent from './Components/AddStudent';
 
 import { atom } from 'recoil';
@@ -42,20 +42,20 @@ function App() {
   // console.log(login.email.length);
   return (
     <ThemeProvider theme={theme}>
-    <div 
-    style = {{
-      maxWidth: '100vw',
-      // backgroundColor: '#f5f5f5',
-      width: '100%',
-      height: '100vh',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}
-    >
-      {login.loggedIn ? <LandingPage/> :<Login />}
-    </div>
-    {/* // </RecoilRoot> */}
+      <div
+        style={{
+          maxWidth: '100vw',
+          backgroundColor: '#fffcfb',
+          width: '100%',
+          height: '100vh',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        {login.loggedIn ? <LandingPage /> : <Login />}
+      </div>
+      {/* // </RecoilRoot> */}
     </ThemeProvider>
   );
 }

@@ -17,6 +17,7 @@ import { modalAtom } from '../StateAtoms/modalAtom'
 import { db } from '../firebaseConfig'
 
 import { getDatabase, ref, set, push } from "firebase/database";
+import { studentAtom } from '../StateAtoms/studentAtom'
 
 
 
@@ -32,12 +33,13 @@ const Item = styled(Paper)(({ theme }) => ({
 
 
 export const Form = () => {
-
-  const [student, setStudent] = React.useState(studentObj)
+  
+  const [studentState, setStudentState] = useRecoilState(studentAtom)
+  const [student, setStudent] = React.useState(studentState);
   const [modal, setModal] = useRecoilState(modalAtom)
-
+  const [time, setTime] = React.useState(new Date())
   // console.log(modal)
-
+  
   const handleClick = () => {
     console.log(student)
 
@@ -45,12 +47,15 @@ export const Form = () => {
       const originalRef = ref(db, '/children');
       const newRef = push(originalRef);
       set(newRef, student)
+      alert('Student Added Successfully')
     } catch (error) {
       console.log(error)
     }
   }
 
-
+  React.useEffect(() => {
+    console.log(student)
+  }, [student])
 
   return (
     // <Box
@@ -160,10 +165,10 @@ export const Form = () => {
               // fontFamily: "Poppins",
               fontWeight: "bold",
             }}
-          >ADD STUDENT</Typography>
+          >{student.firstName.length > 0 ? 'UPDATE STUDENT' : 'ADD STUDENT'}</Typography>
           <Box>
             {/* add currernt time in pretty format */}
-            Time
+            {`${(new Date().getHours())}:${(new Date().getMinutes())}:${(new Date().getSeconds())}`}
           </Box>
         </Box>
         <Box sx={{ flexGrow: 1 }}>
@@ -190,6 +195,8 @@ export const Form = () => {
                   onChange={(e) => {
                     setStudent({ ...student, firstName: e.target.value })
                   }}
+                  placeholder = {student.firstName.length > 0 ? student.firstName : "First Name"}
+                  // placeholder="Aatir Name"
                 />
 
               </Item>
@@ -215,6 +222,7 @@ export const Form = () => {
                   onChange={(e) => {
                     setStudent({ ...student, middleName: e.target.value })
                   }}
+                  placeholder = {student.middleName.length > 0 ? student.middleName : "Middle Name"}
                 />
 
               </Item>
@@ -240,6 +248,7 @@ export const Form = () => {
                   onChange={(e) => {
                     setStudent({ ...student, lastName: e.target.value })
                   }}
+                  placeholder = {student.lastName.length > 0 ? student.lastName : "Last Name"}
                 />
 
               </Item>
@@ -324,7 +333,7 @@ export const Form = () => {
                   required
                   id="outlined-required"
                   label="Roll No"
-                  placeholder='Enter roll number in digits'
+                  // placeholder='Enter roll number in digits'
                   sx={{
                     width: "100%",
 
@@ -332,6 +341,7 @@ export const Form = () => {
                   onChange={(e) => {
                     setStudent({ ...student, rollNo: e.target.value })
                   }}
+                  placeholder = {student.rollNo.length > 0 ? student.rollNo : "Enter roll number in digits"}
                 />
 
               </Item>
@@ -357,8 +367,9 @@ export const Form = () => {
 
                   }}
                   onChange={(e) => {
-                    setStudent({ ...student, address: e.target.value })
+                    setStudent({ ...student, address1: e.target.value })
                   }}
+                  placeholder = {student.address1.length > 0 ? student.address1 : "Address Line1"}
                 />
 
               </Item>
@@ -386,6 +397,7 @@ export const Form = () => {
                   onChange={(e) => {
                     setStudent({ ...student, address2: e.target.value })
                   }}
+                  placeholder = {student.address2.length > 0 ? student.address2 : "Address Line2"}
 
                 />
 
@@ -412,6 +424,7 @@ export const Form = () => {
                   onChange={(e) => {
                     setStudent({ ...student, landmark: e.target.value })
                   }}
+                  placeholder = {student.landmark.length > 0 ? student.landmark : "Landmark"}
                 />
 
               </Item>
@@ -437,6 +450,7 @@ export const Form = () => {
                   onChange={(e) => {
                     setStudent({ ...student, city: e.target.value })
                   }}
+                  placeholder = {student.city.length > 0 ? student.city : "City"}
                 />
 
               </Item>
@@ -462,6 +476,7 @@ export const Form = () => {
                   onChange={(e) => {
                     setStudent({ ...student, pincode: e.target.value })
                   }}
+                  placeholder = {student.pincode.length > 0 ? student.pincode : "Pin Code"}
                 />
 
               </Item>
@@ -488,7 +503,7 @@ export const Form = () => {
                     fontWeight: "550",
                   }}
                   onClick={handleClick}
-                >Add student</Button>
+                >{student.firstName.length > 0 ? 'Update Student' : 'Add Student'}</Button>
 
               </Item>
 
