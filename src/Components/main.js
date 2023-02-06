@@ -267,7 +267,8 @@ export default function DrawerMain() {
       </Drawer>
       <Main open={open}
       sx = {{
-        backgroundColor : '#fffcfb',
+        backgroundColor : 'blue',
+        width : '100vw',
       }}
       >
         <DrawerHeader />

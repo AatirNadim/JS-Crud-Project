@@ -14,6 +14,11 @@ import MenuItem from '@mui/material/MenuItem';
 
 import { useRecoilState } from 'recoil'
 import { modalAtom } from '../StateAtoms/modalAtom'
+import { db } from '../firebaseConfig'
+
+import { getDatabase, ref, set, push } from "firebase/database";
+
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -35,8 +40,16 @@ export const Form = () => {
 
   const handleClick = () => {
     console.log(student)
+
+    try {
+      const originalRef = ref(db, '/children');
+      const newRef = push(originalRef);
+      set(newRef, student)
+    } catch (error) {
+      console.log(error)
+    }
   }
-  
+
 
 
   return (
@@ -143,10 +156,10 @@ export const Form = () => {
           }}
         >
           <Typography
-          sx = {{
-            // fontFamily: "Poppins",
-            fontWeight: "bold",
-          }}
+            sx={{
+              // fontFamily: "Poppins",
+              fontWeight: "bold",
+            }}
           >ADD STUDENT</Typography>
           <Box>
             {/* add currernt time in pretty format */}
@@ -172,7 +185,7 @@ export const Form = () => {
                   label="First Name"
                   sx={{
                     width: "100%",
-                    
+
                   }}
                   onChange={(e) => {
                     setStudent({ ...student, firstName: e.target.value })
@@ -464,17 +477,17 @@ export const Form = () => {
                 }}
               >
                 <Button
-                sx = {{
-                  '&:hover': {
-                    backgroundColor: '#c02c1b',
-                  },
-                  width: "100%",
-                  backgroundColor: "#ff2108",
-                  color: "white",
-                  textTransform: "capitalize",
-                  fontWeight: "550",
-                }}
-                onClick = {handleClick}
+                  sx={{
+                    '&:hover': {
+                      backgroundColor: '#c02c1b',
+                    },
+                    width: "100%",
+                    backgroundColor: "#ff2108",
+                    color: "white",
+                    textTransform: "capitalize",
+                    fontWeight: "550",
+                  }}
+                  onClick={handleClick}
                 >Add student</Button>
 
               </Item>

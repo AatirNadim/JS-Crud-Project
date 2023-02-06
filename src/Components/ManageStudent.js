@@ -24,6 +24,9 @@ import { modalAtom } from '../StateAtoms/modalAtom';
 
 import { ViewForm } from './ViewForm';
 
+import { db } from '../firebaseConfig';
+import { getDatabase, ref, onChildAdded, onChildChanged, onChildRemoved, onValue } from "firebase/database"; 
+
 import Temp from './Modals/temp';
 import { SetMealOutlined } from '@mui/icons-material';
 
@@ -59,7 +62,22 @@ export default function BasicTable() {
   const [view, setView] = React.useState(false);
   const [open, setOpen] = React.useState(false);
 
-  console.log(modalStr.selectedModal)
+  // console.log(modalStr.selectedModal)
+
+  const dbRef = ref(db, '/children');
+  React.useEffect(() => {
+    console.log('useEffect')
+    onValue(dbRef, (snapshot) => {
+      snapshot.forEach((childSnapshot) => {
+        console.log(childSnapshot.val());
+      })
+    })
+  }, [])
+  
+
+
+
+
   const handleView = () => {
     console.log('View');
   };
@@ -75,7 +93,11 @@ export default function BasicTable() {
     // console.log(student)
   }
   return (
-    <Box>
+    <Box
+    sx = {{
+      backgroundColor : 'green',
+    }}
+    >
 
       <Box
         sx={{
