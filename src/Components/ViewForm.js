@@ -149,7 +149,7 @@ export const ViewForm = () => {
           >View Student</Typography>
           <Box>
             {/* add currernt time in pretty format */}
-            Time
+            {`${(new Date().getHours())}:${(new Date().getMinutes())}:${(new Date().getSeconds())}`}
           </Box>
         </Box>
         <Box sx={{ flexGrow: 1 }}>

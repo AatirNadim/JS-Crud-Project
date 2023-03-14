@@ -110,10 +110,10 @@ export default function BasicTable() {
 
         }}
       >
-        <Typography>ADD STUDENT</Typography>
+        <Typography>MANAGE STUDENT</Typography>
         <Box>
           {/* add currernt time in pretty format */}
-          Time
+          {`${(new Date().getHours())}:${(new Date().getMinutes())}:${(new Date().getSeconds())}`}
         </Box>
       </Box>
       <Box sx={{ flexGrow: 1 }}>
